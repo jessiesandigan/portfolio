@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessie Sandigan</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: #000;
+    font-family: Arial;
+letter-spacing: normal;
+  }
+  a { color: inherit; }
+
+  /* ---------- SHARED CONTAINER ---------- */
+  /* Every section of the page uses this for consistent left/right alignment */
+  .container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* ---------- HEADER ---------- */
+  .my-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    
+  }
+  .header-inner {
+    margin: 0 auto;
+    padding-top: 5rem;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    letter-spacing: normal;
+  }
+  .nav-links {
+    display: flex;
+    gap: 50px;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+letter-spacing: normal;
+  }
+
+.nav-links a[href="contact.html"] {
+  color: #000;
+}
+
+.nav-links a[href="works.html"],
+.nav-links a[href="profile.html"] {
+  color: #999;
+}
+  .nav-links a:hover {
+    color: #000;
+    
+  }
+  @media (max-width: 480px) {
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .nav-links { gap: 16px; }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    margin: 0 auto;
+    padding-top: 0rem;
+    padding-bottom: 75rem;
+scroll-margin-top: 140px;
+  }
+  h2.section-title {
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+  }
+
+	.entry-heading {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .entry-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+    font-size: 14px;
+  }
+  .entry-year {
+    flex: 0 0 40px;
+  }
+  .entry-desc {
+    flex: 1;
+  }
+  .contact {
+	display: flex;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .entry-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+	 .profile-text {
+    width: 60%;
+    margin: 0;
+    text-align: left;
+    line-height: 1;
+  }
+
+  .contact a {
+    text-decoration: none;
+  }
+  .contact a:hover {
+    color: #1a73e8;
+  }
+
+  /* ---------- WORKS GRID ---------- */
+  .works-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .hover-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    background: #fff;
+    width: 100%;
+    max-width: 650px;
+  }
+  .hover-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4/5;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <div class="my-header">
+    <div class="header-inner container">
+      <a href="works.html" class="site-name">Jessie Sandigan</a>
+      <nav class="nav-links">
+        <a href="works.html">works</a>
+        <a href="profile.html">profile</a>
+        <a href="contact.html">contact</a>
+      </nav>
+    </div>
+  </div>
+
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="container">
+    <div class="contact-content">
+	 <p class="contact">jsandiganart@gmail.com</p>
+	<p class="contact"><a href="https://www.instagram.com/j_sndgn" target="_blank">@j_sndgn</a></p>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
