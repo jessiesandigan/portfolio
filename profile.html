@@ -166,6 +166,16 @@ scroll-margin-top: 140px;
     line-height: 1;
   }
 
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* ---------- WORKS GRID ---------- */
   .works-grid {
     display: flex;
@@ -211,7 +221,7 @@ scroll-margin-top: 140px;
  <!-- ============ PROFILE ============ -->
   <section id="profile" class="container">
     <div class="profile-content">
-  <div class="profile-text">
+  <div class="profile-text fade-in" id="profileText">
 
     <p class="bio">(b. 1991) is a visual artist who engages in various art forms, including drawing, painting, and mixed media. Taking out inspiration from a range of sources, particularly biblical references, Sandigan examines the relationship between humans and the divine through his visual language.</p>
 
@@ -257,6 +267,20 @@ scroll-margin-top: 140px;
   menuToggle.addEventListener('click', function() {
     const isOpen = navLinks.classList.toggle('open');
     menuToggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
+  });
+
+  // Fade the profile content in as it scrolls into view
+  const fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    fadeObserver.observe(el);
   });
 </script>
 
