@@ -96,39 +96,31 @@ scroll-margin-top: 140px;
     font-weight: normal;
   }
 
-	.entry-heading {
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 12px;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-  }
-  .entry-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.4rem;
-    font-size: 12px;
-  }
-  .entry-year {
-    flex: 0 0 40px;
-  }
-  .entry-desc {
-    flex: 1;
-  }
   .bio {
 	display: flex;
     gap: 1rem;
+    margin-top: 0;
     margin-bottom: 0.4rem;
     font-size: 14px;
     line-height: 1.4;
   }
 
-  .entry-row {
-    display: flex;
+  .bio-plain {
+	gap: 1rem;
+    margin-top: -0.3rem;
+    margin-bottom: 0.4rem;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .bio-label {
+	display: flex;
     gap: 1rem;
     margin-bottom: 0.4rem;
     font-size: 14px;
-    line-height: 1;
+    line-height: 1.4;
+    font-weight: bold;
+    text-decoration: underline;
   }
 
 	 .profile-text {
@@ -187,63 +179,36 @@ scroll-margin-top: 140px;
 
     <p class="bio">(b. 1991) is a visual artist who engages in various art forms, including drawing, painting, and mixed media. Taking out inspiration from a range of sources, particularly biblical references, Sandigan examines the relationship between humans and the divine through his visual language.</p>
 
-    <h3 class="entry-heading">Group Exhibitions</h3>
-    <div class="entry-row">
-      <div class="entry-year">2025</div>
-      <div class="entry-desc"><strong><em>Philippine Art Awards Winners Circle</em></strong>, Metropolitan Museum of Manila, Taguig</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2025</div>
-      <div class="entry-desc"><strong><em>Metrobank Art and Design Excellence</em></strong>, Metropolitan Museum of Manila, Taguig</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2025</div>
-      <div class="entry-desc"><strong><em>404: Theme Not Found</em></strong>,  1159 Creative Space, Makati</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2015</div>
-      <div class="entry-desc"><strong><em>Metrobank Art and Design Excellence</em></strong>, Le Pavillion, Pasay</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2009</div>
-      <div class="entry-desc"><strong><em>Portrait of a Lady</em></strong>, Capitana Gallery, Talisay, Negros Occidental</div>
-    </div>
+	<p class="bio" style="margin-top: 1.5rem; text-decoration: underline;"><strong>Group Exhibitions</strong></p>
 
-    <!-- repeat entry-row for each remaining exhibition line -->
+<p class="bio-plain"><span style="margin-right: 1rem;">2025</span><strong><em>Philippine Art Awards Winners Circle</em></strong>, Metropolitan Museum of Manila, Taguig</p>
 
-    <h3 class="entry-heading">Recognitions</h3>
-    <div class="entry-row">
-      <div class="entry-year">2026</div>
-      <div class="entry-desc"><strong><em>Juror's Choice Award of Merit</em></strong>, Philippine Art Awards</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2025</div>
-      <div class="entry-desc"><strong><em>Regional Winner</em></strong>, Metro Manila Art Awards</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2025</div>
-      <div class="entry-desc"><strong><em>Semi-finalist</em></strong>, Metrobank Art and Design Excellence</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2015</div>
-      <div class="entry-desc"><strong><em>Semi-finalist</em></strong>, Metrobank Art and Design Excellence</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2013</div>
-      <div class="entry-desc"><strong><em>Finalist</em></strong>, Studio 1616 2nd On-the-Spot Art Competition</div>
-    </div>
-	<div class="entry-row">
-      <div class="entry-year">2012</div>
-      <div class="entry-desc"><strong><em>Finalist</em></strong>, Studio 1616 1st On-the-Spot Art Competition</div>
-    </div>
+<p class="bio-plain"><span style="margin-right: 1rem;">2025</span><strong><em>Metrobank Art and Design Excellence</em></strong>, Metropolitan Museum of Manila, Taguig</p>
 
-    <!-- repeat entry-row for each remaining recognition line -->
+<p class="bio-plain"><span style="margin-right: 1rem;">2025</span><strong><em>404: Theme Not Found</em></strong>, 1159 Creative Space, Makati</p>
 
-    <h3 class="entry-heading">Education</h3>
-    <div class="entry-row">
-      <div class="entry-year">2013</div>
-      <div class="entry-desc">Bachelor of Fine Arts, major in Advertising, Technological University of the Philippines, Manila</div>
-    </div>
+<p class="bio-plain"><span style="margin-right: 1rem;">2015</span><strong><em>Metrobank Art and Design Excellence</em></strong>, Le Pavillion, Pasay</p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2009</span><strong><em>Portrait of a Lady</em></strong>, Capitana Gallery, Talisay, Negros Occidental</p>
+
+	<p class="bio" style="margin-top: 1.5rem; text-decoration: underline;"><strong>Recognitions</strong></p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2026</span><strong><em>Juror's Choice Award of Merit</em></strong>, Philippine Art Awards</p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2025</span><strong><em>Regional Winner</em></strong>, Metro Manila Art Awards</p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2025</span><strong><em>Semi-finalist</em></strong>, Metrobank Art and Design Excellence</p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2015</span><strong><em>Semi-finalist</em></strong>, Metrobank Art and Design Excellence</p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2013</span><strong><em>Finalist</em></strong>, Studio 1616 2nd On-the-Spot Art Competition</p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2012</span><strong><em>Finalist</em></strong>, Studio 1616 1st On-the-Spot Art Competition</p>
+
+	<p class="bio" style="margin-top: 1.5rem; text-decoration: underline;"><strong>Education</strong></p>
+
+<p class="bio-plain"><span style="margin-right: 1rem;">2013</span>Bachelor of Fine Arts, major in Advertising, Technological University of the Philippines, Manila</p>
+
 
   </div>
 </div>
@@ -251,5 +216,3 @@ scroll-margin-top: 140px;
 
 </body>
 </html>
-
-
