@@ -195,10 +195,43 @@ scroll-margin-top: 140px;
   .lightbox.open {
     display: flex;
   }
+  .lightbox-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 95%;
+    max-height: 95%;
+  }
   .lightbox img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70vw;
+    max-height: 90vh;
     object-fit: contain;
+    flex-shrink: 0;
+  }
+  .lightbox-label {
+    width: 260px;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  @media (max-width: 600px) {
+    .lightbox-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 60vh;
+    }
+    .lightbox-label {
+      width: 90vw;
+      text-align: center;
+    }
   }
   .lightbox-close {
     position: absolute;
@@ -269,7 +302,10 @@ scroll-margin-top: 140px;
   <!-- ============ LIGHTBOX ============ -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
-    <img src="" alt="" id="lightboxImg" />
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImg" />
+      <div class="lightbox-label" id="lightboxLabel"></div>
+    </div>
   </div>
 
 <script>
@@ -298,12 +334,14 @@ scroll-margin-top: 140px;
   // Lightbox: click an artwork to view it full-size
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxLabel = document.getElementById('lightboxLabel');
   const lightboxClose = document.getElementById('lightboxClose');
 
   document.querySelectorAll('.hover-box img').forEach(function(img) {
     img.addEventListener('click', function() {
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
+      lightboxLabel.textContent = img.alt;
       lightbox.classList.add('open');
     });
   });
@@ -311,6 +349,7 @@ scroll-margin-top: 140px;
   function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxImg.src = '';
+    lightboxLabel.textContent = '';
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
