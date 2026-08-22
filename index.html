@@ -183,7 +183,7 @@ scroll-margin-top: 140px;
 
   /* ---------- LIGHTBOX ---------- */
   .lightbox {
-    display: none;
+    display: flex;
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.9);
@@ -191,9 +191,13 @@ scroll-margin-top: 140px;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
   }
   .lightbox.open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
   }
   .lightbox-content {
     display: flex;
@@ -201,6 +205,11 @@ scroll-margin-top: 140px;
     gap: 2px;
     max-width: 95%;
     max-height: 95%;
+    transform: scale(0.85);
+    transition: transform 0.2s ease;
+  }
+  .lightbox.open .lightbox-content {
+    transform: scale(1);
   }
   .lightbox img {
     max-width: 70vw;
@@ -213,6 +222,7 @@ scroll-margin-top: 140px;
     flex-shrink: 0;
     align-self: flex-end;
     background: #333;
+    border-radius: 12px;
     padding: 1.25rem;
     color: #fff;
     font-size: 14px;
@@ -225,8 +235,12 @@ scroll-margin-top: 140px;
     margin-bottom: 0.75rem;
     display: block;
   }
-  .lightbox-label .label-desc {
+  .lightbox-label .label-line {
     display: block;
+    margin-bottom: 0.3rem;
+  }
+  .lightbox-label .label-line:last-child {
+    margin-bottom: 0;
   }
 
   @media (max-width: 600px) {
@@ -241,6 +255,7 @@ scroll-margin-top: 140px;
     }
     .lightbox-label {
       width: 90vw;
+      align-self: center;
       text-align: center;
     }
   }
@@ -289,15 +304,30 @@ scroll-margin-top: 140px;
     <div class="works-grid">
 
       <div class="hover-box" data-artwork>
-        <img src="god_descending_purification.jpg" alt="God Descending Purification" data-desc="Add your description for this piece here." />
+        <img src="god_descending_purification.jpg" alt="God Descending Purification"
+          data-year="2025"
+          data-medium="Oil, acrylic, enamel, and wall putty on canvas"
+          data-size="62.2 in x 46.4 in"
+          data-award="2026 Philippine Art Awards Juror's Choice Award of Merit"
+          data-collection="" />
       </div>
 
       <div class="hover-box" data-artwork>
-        <img src="and_we_worshipped_the_beast.jpg" alt="And We Worshipped the Beast" data-desc="Add your description for this piece here." />
+        <img src="and_we_worshipped_the_beast.jpg" alt="And We Worshipped the Beast"
+          data-year="2025"
+          data-medium="Oil on canvas"
+          data-size="48 in x 36 in"
+          data-award="2025 Metrobank Art & Design Excellence Semi-finalist"
+          data-collection="Private Collection" />
       </div>
 
 	<div class="hover-box" data-artwork>
-        <img src="savior.jpg" alt="Savior" data-desc="Add your description for this piece here." />
+        <img src="savior.jpg" alt="Savior"
+          data-year="2015"
+          data-medium="Oil on canvas"
+          data-size="48 in x 36 in"
+          data-award="2015 Metrobank Art & Design Excellence Semi-finalist"
+          data-collection="" />
       </div>
 
       </div>
@@ -352,10 +382,21 @@ scroll-margin-top: 140px;
     img.addEventListener('click', function() {
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
-      const desc = img.getAttribute('data-desc') || '';
-      lightboxLabel.innerHTML =
-        '<span class="label-title">' + img.alt + '</span>' +
-        '<span class="label-desc">' + desc + '</span>';
+
+      const fields = [
+        img.getAttribute('data-year'),
+        img.getAttribute('data-medium'),
+        img.getAttribute('data-size'),
+        img.getAttribute('data-award'),
+        img.getAttribute('data-collection')
+      ].filter(function(f) { return f && f.trim() !== ''; });
+
+      let html = '<span class="label-title">' + img.alt + '</span>';
+      fields.forEach(function(f) {
+        html += '<span class="label-line">' + f + '</span>';
+      });
+      lightboxLabel.innerHTML = html;
+
       lightbox.classList.add('open');
     });
   });
