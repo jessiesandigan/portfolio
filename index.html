@@ -197,7 +197,7 @@ scroll-margin-top: 140px;
   }
   .lightbox-content {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 2rem;
     max-width: 95%;
     max-height: 95%;
@@ -211,11 +211,22 @@ scroll-margin-top: 140px;
   .lightbox-label {
     width: 260px;
     flex-shrink: 0;
+    align-self: flex-end;
+    background: #333;
+    padding: 1.25rem;
     color: #fff;
     font-size: 14px;
     letter-spacing: 0.02em;
     line-height: 1.5;
     text-align: left;
+  }
+  .lightbox-label .label-title {
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .lightbox-label .label-desc {
+    display: block;
   }
 
   @media (max-width: 600px) {
@@ -278,15 +289,15 @@ scroll-margin-top: 140px;
     <div class="works-grid">
 
       <div class="hover-box" data-artwork>
-        <img src="god_descending_purification.jpg" alt="God Descending Purification" />
+        <img src="god_descending_purification.jpg" alt="God Descending Purification" data-desc="Add your description for this piece here." />
       </div>
 
       <div class="hover-box" data-artwork>
-        <img src="and_we_worshipped_the_beast.jpg" alt="And We Worshipped the Beast" />
+        <img src="and_we_worshipped_the_beast.jpg" alt="And We Worshipped the Beast" data-desc="Add your description for this piece here." />
       </div>
 
 	<div class="hover-box" data-artwork>
-        <img src="savior.jpg" alt="Savior" />
+        <img src="savior.jpg" alt="Savior" data-desc="Add your description for this piece here." />
       </div>
 
       </div>
@@ -341,7 +352,10 @@ scroll-margin-top: 140px;
     img.addEventListener('click', function() {
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
-      lightboxLabel.textContent = img.alt;
+      const desc = img.getAttribute('data-desc') || '';
+      lightboxLabel.innerHTML =
+        '<span class="label-title">' + img.alt + '</span>' +
+        '<span class="label-desc">' + desc + '</span>';
       lightbox.classList.add('open');
     });
   });
