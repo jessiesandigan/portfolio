@@ -124,7 +124,7 @@ letter-spacing: normal;
   section {
     margin: 0 auto;
     padding-top: 0rem;
-    padding-bottom: 20rem;
+    padding-bottom: 35rem;
 scroll-margin-top: 140px;
   }
   h2.section-title {
@@ -156,6 +156,21 @@ scroll-margin-top: 140px;
     object-fit: cover;
     aspect-ratio: 4/5;
     cursor: pointer;
+  }
+
+  .hover-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .hover-box:hover::after {
+      opacity: 1;
+    }
   }
 
   /* ---------- LIGHTBOX ---------- */
