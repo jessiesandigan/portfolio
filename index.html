@@ -211,13 +211,65 @@ scroll-margin-top: 140px;
   .lightbox.open .lightbox-content {
     transform: scale(1);
   }
+  .lightbox-image-wrap {
+    position: relative;
+    display: inline-flex;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
   .lightbox img {
+    display: block;
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
   }
+  .lightbox-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1.25rem;
+    background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+    color: #f5f5f5;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    text-align: left;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .lightbox-image-wrap:hover .lightbox-label {
+      opacity: 1;
+    }
+  }
+  .lightbox-image-wrap.label-active .lightbox-label {
+    opacity: 1;
+  }
+  .lightbox-label .label-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .lightbox-label .label-line {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .lightbox-label .label-line:last-child {
+    margin-bottom: 0;
+  }
 
   @media (max-width: 600px) {
+    .lightbox-image-wrap {
+      max-width: 90vw;
+      max-height: 90vh;
+    }
     .lightbox img {
       max-width: 90vw;
       max-height: 90vh;
@@ -308,7 +360,10 @@ scroll-margin-top: 140px;
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
     <div class="lightbox-content">
-      <img src="" alt="" id="lightboxImg" />
+      <div class="lightbox-image-wrap">
+        <img src="" alt="" id="lightboxImg" />
+        <div class="lightbox-label" id="lightboxLabel"></div>
+      </div>
     </div>
   </div>
 
@@ -338,12 +393,28 @@ scroll-margin-top: 140px;
   // Lightbox: click an artwork to view it full-size
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxLabel = document.getElementById('lightboxLabel');
   const lightboxClose = document.getElementById('lightboxClose');
 
   document.querySelectorAll('.hover-box img').forEach(function(img) {
     img.addEventListener('click', function() {
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
+
+      const fields = [
+        img.getAttribute('data-year'),
+        img.getAttribute('data-medium'),
+        img.getAttribute('data-size'),
+        img.getAttribute('data-award'),
+        img.getAttribute('data-collection')
+      ].filter(function(f) { return f && f.trim() !== ''; });
+
+      let html = '<span class="label-title">' + img.alt + '</span>';
+      fields.forEach(function(f) {
+        html += '<span class="label-line">' + f + '</span>';
+      });
+      lightboxLabel.innerHTML = html;
+
       lightbox.classList.add('open');
     });
   });
@@ -351,9 +422,20 @@ scroll-margin-top: 140px;
   function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxImg.src = '';
+    lightboxLabel.innerHTML = '';
+    lightboxImageWrap.classList.remove('label-active');
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
+
+  // Mobile: tap the full-size image to toggle the label on/off
+  const lightboxImageWrap = document.querySelector('.lightbox-image-wrap');
+  lightboxImageWrap.addEventListener('click', function(e) {
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) {
+      e.stopPropagation();
+      lightboxImageWrap.classList.toggle('label-active');
+    }
+  });
 
   // Close when clicking the dark background (but not the image itself)
   lightbox.addEventListener('click', function(e) {
