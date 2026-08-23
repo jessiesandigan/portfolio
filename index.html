@@ -201,8 +201,8 @@ scroll-margin-top: 140px;
   }
   .lightbox-content {
     display: flex;
-    align-items: flex-end;
-    gap: 2px;
+    align-items: center;
+    justify-content: center;
     max-width: 95%;
     max-height: 95%;
     transform: scale(0.85);
@@ -212,51 +212,15 @@ scroll-margin-top: 140px;
     transform: scale(1);
   }
   .lightbox img {
-    max-width: 70vw;
+    max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
-    flex-shrink: 0;
-  }
-  .lightbox-label {
-    width: 350px;
-    flex-shrink: 0;
-    align-self: flex-end;
-    background: #f5f5f5;
-    border-radius: 3px;
-    padding: 1.25rem;
-    color: #000;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-    text-align: left;
-  }
-  .lightbox-label .label-title {
-    font-weight: bold;
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-  .lightbox-label .label-line {
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .lightbox-label .label-line:last-child {
-    margin-bottom: 0;
   }
 
   @media (max-width: 600px) {
-    .lightbox-content {
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-    }
     .lightbox img {
       max-width: 90vw;
-      max-height: 60vh;
-    }
-    .lightbox-label {
-      width: 90vw;
-      align-self: center;
-      text-align: center;
+      max-height: 90vh;
     }
   }
   .lightbox-close {
@@ -345,7 +309,6 @@ scroll-margin-top: 140px;
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
     <div class="lightbox-content">
       <img src="" alt="" id="lightboxImg" />
-      <div class="lightbox-label" id="lightboxLabel"></div>
     </div>
   </div>
 
@@ -375,28 +338,12 @@ scroll-margin-top: 140px;
   // Lightbox: click an artwork to view it full-size
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxLabel = document.getElementById('lightboxLabel');
   const lightboxClose = document.getElementById('lightboxClose');
 
   document.querySelectorAll('.hover-box img').forEach(function(img) {
     img.addEventListener('click', function() {
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
-
-      const fields = [
-        img.getAttribute('data-year'),
-        img.getAttribute('data-medium'),
-        img.getAttribute('data-size'),
-        img.getAttribute('data-award'),
-        img.getAttribute('data-collection')
-      ].filter(function(f) { return f && f.trim() !== ''; });
-
-      let html = '<span class="label-title">' + img.alt + '</span>';
-      fields.forEach(function(f) {
-        html += '<span class="label-line">' + f + '</span>';
-      });
-      lightboxLabel.innerHTML = html;
-
       lightbox.classList.add('open');
     });
   });
@@ -404,7 +351,6 @@ scroll-margin-top: 140px;
   function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxImg.src = '';
-    lightboxLabel.textContent = '';
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
